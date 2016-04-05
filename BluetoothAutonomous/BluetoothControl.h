@@ -22,5 +22,7 @@
 -(void)writeData:(NSData *) data;
 -(NSString *)bluetoothStatus;
 -(bool)bluetoothIsOn;
+-(void)sendSpeedDataWithX:(double)x andY:(double)y;
+-(void)sendSpeedDataWithLeft:(double)x andRight:(double)y;
 
 @end

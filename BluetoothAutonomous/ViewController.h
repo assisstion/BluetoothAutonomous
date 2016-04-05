@@ -14,7 +14,7 @@
 
 @property BluetoothControl * control;
 @property (weak, nonatomic) IBOutlet UILabel *bluetoothStatusLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *powerButton;
+@property (weak, nonatomic) IBOutlet UIButton *powerButton;
 
 @end
 
