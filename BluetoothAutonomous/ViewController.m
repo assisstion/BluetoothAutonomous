@@ -6,6 +6,7 @@
 //  Copyright © 2016 Markus Feng. All rights reserved.
 //
 //  Accelerometer Code
+//  https://github.com/acekiller/iOS-Samples/tree/master/BubbleLevel
 //  https://github.com/stephsharp/SpiritLevelCircle
 
 #import "ViewController.h"
@@ -44,6 +45,10 @@
     
     [self.motionManager startGyroUpdatesToQueue:[NSOperationQueue currentQueue]
                                     withHandler:^(CMGyroData *gyroData, NSError *error) {[self outputRotationData:gyroData.rotationRate];}];
+    
+    [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMDeviceMotion * deviceMotion, NSError *error) {
+        [self updateWithAttitude:deviceMotion.attitude];
+    }];
 }
 
 //Motion Manager Functions
@@ -109,7 +114,7 @@
 }
 
 -(void)updateWithXRotation:(double)rotation{
-    if(self.started){
+    /*if(self.started){
         double threshold = 0.5;
         if(rotation > threshold){
             //move forwards
@@ -118,6 +123,34 @@
         else if(rotation < -threshold){
             //move backwards
             [self.control sendSpeedDataWithLeft:-1 andRight:-1];
+        }
+        else{
+            //stop
+            [self.control sendSpeedDataWithLeft:0 andRight:0];
+        }
+    }
+    else{
+        //stop
+        [self.control sendSpeedDataWithLeft:0 andRight:0];
+    }*/
+}
+
+-(void)updateWithAttitude:(CMAttitude *)attitude{
+    /*
+    NSLog(@"roll%@",[NSString stringWithFormat:@" %.2f",attitude.roll]);
+    NSLog(@"pitch%@",[NSString stringWithFormat:@" %.2f",attitude.pitch]);
+    NSLog(@"yaw%@",[NSString stringWithFormat:@" %.2f",attitude.yaw]);
+     */
+    double orientation = attitude.pitch;
+    if(self.started){
+        double threshold = 0.05;
+        if(orientation > threshold){
+            //move forwards
+            [self.control sendSpeedDataWithLeft:-1 andRight:-1];
+        }
+        else if(orientation < -threshold){
+            //move backwards
+            [self.control sendSpeedDataWithLeft:1 andRight:1];
         }
         else{
             //stop
