@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BluetoothControlReceiver.h"
 #import "BluetoothControl.h"
+#import "PIDSystem.h"
 #import <CoreMotion/CoreMotion.h>
 
 double currentMaxAccelX;
@@ -24,6 +25,7 @@ double currentMaxRotZ;
 @property (weak, nonatomic) IBOutlet UILabel *bluetoothStatusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *powerButton;
 @property (strong, nonatomic) CMMotionManager *motionManager;
+@property (strong, nonatomic) PIDSystem *pid;
 
 @end
 

@@ -23,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.control = [[BluetoothControl alloc] initWithReceiver:self];
+    self.pid = [[PIDSystem alloc] initWithP:1 andI:0.03 andD:0.03];
     
     currentMaxAccelX = 0;
     currentMaxAccelY = 0;
@@ -142,20 +143,27 @@
     NSLog(@"yaw%@",[NSString stringWithFormat:@" %.2f",attitude.yaw]);
      */
     double orientation = attitude.pitch;
+    double oconst = 3.1415926/2;
+    double orientationPID = (orientation+oconst)/oconst;
+    double orientationResult = [self.pid pid:orientationPID];
+    double data = (orientationResult);
+    NSLog(@"%f, %f, %f",orientation, orientationPID, data);
+    
     if(self.started){
-        double threshold = 0.05;
+        [self.control sendSpeedDataWithLeft:data andRight:data];
+        /*double threshold = 0.02;
         if(orientation > threshold){
             //move forwards
-            [self.control sendSpeedDataWithLeft:-1 andRight:-1];
+            [self.control sendSpeedDataWithLeft:1 andRight:1];
         }
         else if(orientation < -threshold){
             //move backwards
-            [self.control sendSpeedDataWithLeft:1 andRight:1];
+            [self.control sendSpeedDataWithLeft:-1 andRight:-1];
         }
         else{
             //stop
             [self.control sendSpeedDataWithLeft:0 andRight:0];
-        }
+        }*/
     }
     else{
         //stop

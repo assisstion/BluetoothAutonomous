@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B1F1B6C1CB7E1EB0029DF1C /* PIDSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1F1B6B1CB7E1EB0029DF1C /* PIDSystem.m */; };
 		6B512CFD1CAAD7D400CF4CA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512CFC1CAAD7D400CF4CA2 /* main.m */; };
 		6B512D001CAAD7D400CF4CA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512CFF1CAAD7D400CF4CA2 /* AppDelegate.m */; };
 		6B512D031CAAD7D400CF4CA2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512D021CAAD7D400CF4CA2 /* ViewController.m */; };
@@ -15,7 +16,7 @@
 		6B512D0B1CAAD7D400CF4CA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B512D091CAAD7D400CF4CA2 /* LaunchScreen.storyboard */; };
 		6B512D161CAAD7D400CF4CA2 /* BluetoothAutonomousTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512D151CAAD7D400CF4CA2 /* BluetoothAutonomousTests.m */; };
 		6B512D211CAAD7D400CF4CA2 /* BluetoothAutonomousUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512D201CAAD7D400CF4CA2 /* BluetoothAutonomousUITests.m */; };
-		6B512D301CAAD82C00CF4CA2 /* BluetoothControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512D2F1CAAD82C00CF4CA2 /* BluetoothControl.m */; settings = {ASSET_TAGS = (); }; };
+		6B512D301CAAD82C00CF4CA2 /* BluetoothControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512D2F1CAAD82C00CF4CA2 /* BluetoothControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B1F1B6A1CB7E1EB0029DF1C /* PIDSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIDSystem.h; sourceTree = "<group>"; };
+		6B1F1B6B1CB7E1EB0029DF1C /* PIDSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIDSystem.m; sourceTree = "<group>"; };
 		6B512CF81CAAD7D400CF4CA2 /* BluetoothAutonomous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothAutonomous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B512CFC1CAAD7D400CF4CA2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B512CFE1CAAD7D400CF4CA2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -109,6 +112,8 @@
 				6B512CFF1CAAD7D400CF4CA2 /* AppDelegate.m */,
 				6B512D011CAAD7D400CF4CA2 /* ViewController.h */,
 				6B512D021CAAD7D400CF4CA2 /* ViewController.m */,
+				6B1F1B6A1CB7E1EB0029DF1C /* PIDSystem.h */,
+				6B1F1B6B1CB7E1EB0029DF1C /* PIDSystem.m */,
 				6B512D2E1CAAD82C00CF4CA2 /* BluetoothControl.h */,
 				6B512D2F1CAAD82C00CF4CA2 /* BluetoothControl.m */,
 				6B512D311CAAD95C00CF4CA2 /* BluetoothControlReceiver.h */,
@@ -282,6 +287,7 @@
 			files = (
 				6B512D301CAAD82C00CF4CA2 /* BluetoothControl.m in Sources */,
 				6B512D031CAAD7D400CF4CA2 /* ViewController.m in Sources */,
+				6B1F1B6C1CB7E1EB0029DF1C /* PIDSystem.m in Sources */,
 				6B512D001CAAD7D400CF4CA2 /* AppDelegate.m in Sources */,
 				6B512CFD1CAAD7D400CF4CA2 /* main.m in Sources */,
 			);
@@ -422,10 +428,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BluetoothAutonomous/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.markusfeng.BluetoothAutonomous;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -433,10 +442,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = BluetoothAutonomous/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.markusfeng.BluetoothAutonomous;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -507,6 +519,7 @@
 				6B512D271CAAD7D400CF4CA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6B512D281CAAD7D400CF4CA2 /* Build configuration list for PBXNativeTarget "BluetoothAutonomousTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +528,7 @@
 				6B512D2A1CAAD7D400CF4CA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6B512D2B1CAAD7D400CF4CA2 /* Build configuration list for PBXNativeTarget "BluetoothAutonomousUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +537,7 @@
 				6B512D2D1CAAD7D400CF4CA2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
