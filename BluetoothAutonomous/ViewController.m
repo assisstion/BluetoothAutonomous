@@ -115,6 +115,7 @@
 }
 
 -(void)updateWithXRotation:(double)rotation{
+    
     /*if(self.started){
         double threshold = 0.5;
         if(rotation > threshold){

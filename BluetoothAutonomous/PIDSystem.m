@@ -81,7 +81,7 @@
 -(double)pidInternal:(double)input{
     double error = self.target - input;
     proportional = error;
-    integral = integral + error;
+    integral = integral + error * self.iConstant;
     if(integral > self.max){
         integral = self.max;
     }
@@ -89,7 +89,7 @@
         integral = self.min;
     }
     derivative = input - lastValue;
-    return self.pConstant * proportional + self.iConstant * integral + self.dConstant * derivative;
+    return self.pConstant * proportional + integral + self.dConstant * derivative;
 }
 
 @end
