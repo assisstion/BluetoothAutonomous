@@ -24,5 +24,6 @@
 -(bool)bluetoothIsOn;
 -(void)sendSpeedDataWithX:(double)x andY:(double)y;
 -(void)sendSpeedDataWithLeft:(double)x andRight:(double)y;
+-(void)sendOptionDataWithOption:(UInt8)option;
 
 @end

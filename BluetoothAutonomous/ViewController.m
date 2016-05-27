@@ -10,10 +10,13 @@
 //  https://github.com/stephsharp/SpiritLevelCircle
 
 #import "ViewController.h"
+#import "VideoProcessor.h"
 
 @interface ViewController ()
 
 @property bool started;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+@property VideoProcessor * processor;
 
 @end
 
@@ -23,7 +26,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.control = [[BluetoothControl alloc] initWithReceiver:self];
-    self.pid = [[PIDSystem alloc] initWithP:1 andI:0.03 andD:0.03];
+    
+    self.proportional.text = @"4.0";
+    self.integral.text = @"0.05";
+    self.derivative.text = @"0.05";
+    self.exponent.text = @"0.5";
+    
+    self.proportional.delegate = self;
+    self.integral.delegate = self;
+    self.derivative.delegate = self;
+    
+    [self.proportional setReturnKeyType:UIReturnKeyDone];
+    [self.integral setReturnKeyType:UIReturnKeyDone];
+    [self.derivative setReturnKeyType:UIReturnKeyDone];
     
     currentMaxAccelX = 0;
     currentMaxAccelY = 0;
@@ -50,6 +65,12 @@
     [self.motionManager startDeviceMotionUpdatesToQueue:[NSOperationQueue currentQueue] withHandler:^(CMDeviceMotion * deviceMotion, NSError *error) {
         [self updateWithAttitude:deviceMotion.attitude];
     }];
+    /*
+    self.processor = [[VideoProcessor alloc] init];
+    self.processor.imageView = self.imageView;
+    [self.processor checkCamera];
+    [self.processor start];
+     */
 }
 
 //Motion Manager Functions
@@ -103,6 +124,8 @@
     if(!self.started){
         NSLog(@"Begin");
         //[self.control sendSpeedDataWithLeft:1 andRight:-1];
+        self.pid = [[PIDSystem alloc] initWithP:[self.proportional.text doubleValue] andI:[self.integral.text doubleValue] andD:[self.derivative.text doubleValue]];
+        [self.control sendOptionDataWithOption:1];
         [self.powerButton setTitle:@"Stop" forState:UIControlStateNormal];
         self.started = true;
     }
@@ -143,9 +166,11 @@
     NSLog(@"pitch%@",[NSString stringWithFormat:@" %.2f",attitude.pitch]);
     NSLog(@"yaw%@",[NSString stringWithFormat:@" %.2f",attitude.yaw]);
      */
-    double orientation = attitude.pitch;
+    double orientation = [self powMag:attitude.pitch to:[self.exponent.text doubleValue]];
     double oconst = 3.1415926/2;
-    double orientationPID = (orientation+oconst)/oconst;
+    double calibrationOffset = self.calibration.value * 0.1;
+    [self.orientationLabel setText:[NSString stringWithFormat:@"%f", [self displayRound:orientation +calibrationOffset]]];
+    double orientationPID = (orientation+oconst+calibrationOffset)/oconst;
     double orientationResult = [self.pid pid:orientationPID];
     double data = (orientationResult);
     NSLog(@"%f, %f, %f",orientation, orientationPID, data);
@@ -170,6 +195,23 @@
         //stop
         [self.control sendSpeedDataWithLeft:0 andRight:0];
     }
+}
+
+-(double)displayRound:(double)value{
+    return ((long)(value * 100))/100.0;
+}
+-(double)powMag:(double)base to:(double)exponent{
+    if(base < 0){
+        return -pow(-base, exponent);
+    }
+    else{
+        return pow(base, exponent);
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    return true;
 }
 
 @end

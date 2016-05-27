@@ -19,13 +19,19 @@ double currentMaxRotX;
 double currentMaxRotY;
 double currentMaxRotZ;
 
-@interface ViewController : UIViewController <BluetoothControlReceiver>
+@interface ViewController : UIViewController <BluetoothControlReceiver, UITextFieldDelegate>
 
 @property BluetoothControl * control;
 @property (weak, nonatomic) IBOutlet UILabel *bluetoothStatusLabel;
 @property (weak, nonatomic) IBOutlet UIButton *powerButton;
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (strong, nonatomic) PIDSystem *pid;
+@property (weak, nonatomic) IBOutlet UITextField *proportional;
+@property (weak, nonatomic) IBOutlet UITextField *integral;
+@property (weak, nonatomic) IBOutlet UITextField *derivative;
+@property (weak, nonatomic) IBOutlet UITextField *exponent;
+@property (weak, nonatomic) IBOutlet UISlider *calibration;
+@property (weak, nonatomic) IBOutlet UILabel *orientationLabel;
 
 @end
 

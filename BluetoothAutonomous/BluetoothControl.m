@@ -204,10 +204,15 @@ typedef struct
     UInt8 fx = (x2 + 1) * 127 + 1;
     UInt8 fy = (y2 + 1) * 127 + 1;
     NSLog(@"left: %i right: %i", fx, fy);
-    UInt8 data[2] = {fx, fy};
+    UInt8 data[3] = {fx, fy, 0};
     
     
-    [self writeData:[NSData dataWithBytes:data length:2]];
+    [self writeData:[NSData dataWithBytes:data length:3]];
+}
+
+-(void)sendOptionDataWithOption:(UInt8)option{
+    UInt8 data[3] = {1, 1, option};
+    [self writeData:[NSData dataWithBytes:data length:3]];
 }
 
 //Writes the data to the bluetooth robot
