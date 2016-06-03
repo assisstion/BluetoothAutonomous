@@ -11,16 +11,20 @@
 
 #import "ViewController.h"
 #import "VideoProcessor.h"
+#import "DataSender.h"
 
 @interface ViewController ()
 
 @property bool started;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property VideoProcessor * processor;
+//@property VideoProcessor * processor;
+//@property DataSender * sender;
 
 @end
 
-@implementation ViewController
+@implementation ViewController{
+    bool toCalibrate;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -71,6 +75,8 @@
     [self.processor checkCamera];
     [self.processor start];
      */
+    
+    toCalibrate = false;
 }
 
 //Motion Manager Functions
@@ -125,6 +131,9 @@
         NSLog(@"Begin");
         //[self.control sendSpeedDataWithLeft:1 andRight:-1];
         self.pid = [[PIDSystem alloc] initWithP:[self.proportional.text doubleValue] andI:[self.integral.text doubleValue] andD:[self.derivative.text doubleValue]];
+        //self.sender = [[DataSender alloc] initWithAddress:@"169.254.15.26" andPort:48484];
+        toCalibrate = true;
+        //[self.sender connect];
         [self.control sendOptionDataWithOption:1];
         [self.powerButton setTitle:@"Stop" forState:UIControlStateNormal];
         self.started = true;
@@ -168,6 +177,10 @@
      */
     double orientation = [self powMag:attitude.pitch to:[self.exponent.text doubleValue]];
     double oconst = 3.1415926/2;
+    if(toCalibrate){
+        self.calibration.value = orientation * -10;
+        toCalibrate = false;
+    }
     double calibrationOffset = self.calibration.value * 0.1;
     [self.orientationLabel setText:[NSString stringWithFormat:@"%f", [self displayRound:orientation +calibrationOffset]]];
     double orientationPID = (orientation+oconst+calibrationOffset)/oconst;
@@ -177,6 +190,7 @@
     
     if(self.started){
         [self.control sendSpeedDataWithLeft:data andRight:data];
+        //[self.sender sendData:[NSString stringWithFormat:@"%f\n", orientation]];
         /*double threshold = 0.02;
         if(orientation > threshold){
             //move forwards

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6B1F1B6C1CB7E1EB0029DF1C /* PIDSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B1F1B6B1CB7E1EB0029DF1C /* PIDSystem.m */; };
+		6B48DC851CFD1988003F24B0 /* DataSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B48DC841CFD1988003F24B0 /* DataSender.m */; };
 		6B512CFD1CAAD7D400CF4CA2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512CFC1CAAD7D400CF4CA2 /* main.m */; };
 		6B512D001CAAD7D400CF4CA2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512CFF1CAAD7D400CF4CA2 /* AppDelegate.m */; };
 		6B512D031CAAD7D400CF4CA2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B512D021CAAD7D400CF4CA2 /* ViewController.m */; };
@@ -41,6 +42,8 @@
 /* Begin PBXFileReference section */
 		6B1F1B6A1CB7E1EB0029DF1C /* PIDSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIDSystem.h; sourceTree = "<group>"; };
 		6B1F1B6B1CB7E1EB0029DF1C /* PIDSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIDSystem.m; sourceTree = "<group>"; };
+		6B48DC831CFD1988003F24B0 /* DataSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSender.h; sourceTree = "<group>"; };
+		6B48DC841CFD1988003F24B0 /* DataSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSender.m; sourceTree = "<group>"; };
 		6B512CF81CAAD7D400CF4CA2 /* BluetoothAutonomous.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BluetoothAutonomous.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B512CFC1CAAD7D400CF4CA2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B512CFE1CAAD7D400CF4CA2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -131,6 +134,8 @@
 				6B512D091CAAD7D400CF4CA2 /* LaunchScreen.storyboard */,
 				6B512D0C1CAAD7D400CF4CA2 /* Info.plist */,
 				6B512CFB1CAAD7D400CF4CA2 /* Supporting Files */,
+				6B48DC831CFD1988003F24B0 /* DataSender.h */,
+				6B48DC841CFD1988003F24B0 /* DataSender.m */,
 			);
 			path = BluetoothAutonomous;
 			sourceTree = "<group>";
@@ -299,6 +304,7 @@
 				6B62B85D1CC681C800E93384 /* VideoProcessor.m in Sources */,
 				6B1F1B6C1CB7E1EB0029DF1C /* PIDSystem.m in Sources */,
 				6B512D001CAAD7D400CF4CA2 /* AppDelegate.m in Sources */,
+				6B48DC851CFD1988003F24B0 /* DataSender.m in Sources */,
 				6B512CFD1CAAD7D400CF4CA2 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
